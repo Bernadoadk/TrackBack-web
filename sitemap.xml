@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://returnflow.app/</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://returnflow.app/og-image.png</image:loc>
+      <image:title>ReturnFlow — Returns management for Shopify</image:title>
+      <image:caption>Branded customer portal, automation, live chat and analytics for Shopify returns.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Anchor sections — most search engines crawl them as part of the home,
+       but listing them helps for some long-tail queries. -->
+  <url>
+    <loc>https://returnflow.app/#features</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://returnflow.app/#how</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://returnflow.app/#pricing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://returnflow.app/#faq</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
