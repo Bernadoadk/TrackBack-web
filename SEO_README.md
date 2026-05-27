@@ -47,15 +47,15 @@ These give you **rich results** that competitors without them never get.
 
 ## ⚠️ Things you MUST do before deploying
 
-### 1. Replace the placeholder URL `return-flow-web.vercel.app`
-Search & replace `return-flow-web.vercel.app` everywhere in `index.html`, `robots.txt`,
+### 1. Replace the placeholder URL `trackback-web.vercel.app`
+Search & replace `trackback-web.vercel.app` everywhere in `index.html`, `robots.txt`,
 `sitemap.xml` with **your real domain**.
 
 ```powershell
 # Example (PowerShell):
-(Get-Content index.html) -replace 'return-flow-web.vercel.app', 'your-real-domain.com' | Set-Content index.html
-(Get-Content robots.txt) -replace 'return-flow-web.vercel.app', 'your-real-domain.com' | Set-Content robots.txt
-(Get-Content sitemap.xml) -replace 'return-flow-web.vercel.app', 'your-real-domain.com' | Set-Content sitemap.xml
+(Get-Content index.html) -replace 'trackback-web.vercel.app', 'your-real-domain.com' | Set-Content index.html
+(Get-Content robots.txt) -replace 'trackback-web.vercel.app', 'your-real-domain.com' | Set-Content robots.txt
+(Get-Content sitemap.xml) -replace 'trackback-web.vercel.app', 'your-real-domain.com' | Set-Content sitemap.xml
 ```
 
 ### 2. Create an OG image (1200×630 px)
