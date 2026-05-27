@@ -4,18 +4,30 @@
 
   <url>
     <loc>https://return-flow-web.vercel.app/</loc>
-    <lastmod>2026-05-17</lastmod>
+    <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://return-flow-web.vercel.app/og-image.png</image:loc>
-      <image:title>ReturnFlow — Returns management for Shopify</image:title>
+      <image:title>TrackBack — Returns management for Shopify</image:title>
       <image:caption>Branded customer portal, automation, live chat and analytics for Shopify returns.</image:caption>
     </image:image>
   </url>
 
-  <!-- Anchor sections — most search engines crawl them as part of the home,
-       but listing them helps for some long-tail queries. -->
+  <url>
+    <loc>https://return-flow-web.vercel.app/privacy-policy.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://return-flow-web.vercel.app/changelog.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://return-flow-web.vercel.app/#features</loc>
     <changefreq>monthly</changefreq>

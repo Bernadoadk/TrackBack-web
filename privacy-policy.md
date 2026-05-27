@@ -3,7 +3,7 @@
 **Effective date:** May 18, 2026
 **Last updated:** May 18, 2026
 
-This Privacy Policy explains how **ReturnFlow** ("we", "us", "our") collects, uses, shares and protects information when you install or use our Shopify app, our public landing page at returnflow.app, and the customer return portal we host on behalf of merchants. By installing or using ReturnFlow, you agree to the terms below.
+This Privacy Policy explains how **TrackBack** ("we", "us", "our") collects, uses, shares and protects information when you install or use our Shopify app, our public landing page at returnflow.app, and the customer return portal we host on behalf of merchants. By installing or using TrackBack, you agree to the terms below.
 
 We are committed to GDPR, CCPA and Shopify's data protection requirements. We are also committed to writing privacy policies that are actually readable. Where a section uses legal language, we summarize it in plain English just below.
 
@@ -11,10 +11,10 @@ We are committed to GDPR, CCPA and Shopify's data protection requirements. We ar
 
 ## 1. Who we are
 
-ReturnFlow is a Shopify app that lets merchants manage product returns, exchanges and refunds. The "merchant" is the Shopify store owner who installed our app. The "customer" is the shopper using a merchant's return portal.
+TrackBack is a Shopify app that lets merchants manage product returns, exchanges and refunds. The "merchant" is the Shopify store owner who installed our app. The "customer" is the shopper using a merchant's return portal.
 
 - **Data controller (your shop's data):** the merchant — you decide what is collected from your customers
-- **Data processor:** ReturnFlow — we process data on the merchant's behalf, per Shopify's Data Processing Addendum
+- **Data processor:** TrackBack — we process data on the merchant's behalf, per Shopify's Data Processing Addendum
 - **Contact:** bernadoecom@gmail.com
 
 ---
@@ -29,7 +29,7 @@ ReturnFlow is a Shopify app that lets merchants manage product returns, exchange
 - App settings you configure: return window, refund options, branding (logo, colors, texts), email templates, custom return reasons
 - Cloudinary-hosted logo images, if you upload one
 
-We do **not** receive your password, payment card details, or any data outside the OAuth scopes you grant during install (see your Shopify Admin → Apps → ReturnFlow for the exact list).
+We do **not** receive your password, payment card details, or any data outside the OAuth scopes you grant during install (see your Shopify Admin → Apps → TrackBack for the exact list).
 
 ### 2.2 From customers (collected via your return portal)
 
@@ -69,7 +69,7 @@ We do **not** sell your data. We do **not** use your customers' data to train AI
 
 ## 4. Sub-processors and third parties
 
-We rely on a small number of sub-processors to operate ReturnFlow. Each is bound by a Data Processing Agreement.
+We rely on a small number of sub-processors to operate TrackBack. Each is bound by a Data Processing Agreement.
 
 | Provider | Purpose | Data shared | Location |
 |---|---|---|---|
@@ -107,7 +107,7 @@ All webhooks are HMAC-verified using the app secret.
 
 ## 6. Your rights (GDPR, CCPA, and similar laws)
 
-If you are a merchant or a customer of a merchant using ReturnFlow, you have the right to:
+If you are a merchant or a customer of a merchant using TrackBack, you have the right to:
 
 - **Access** — request a copy of the personal data we hold about you
 - **Rectification** — correct inaccurate or incomplete data
@@ -159,7 +159,7 @@ We do not use cookies or local storage for advertising or cross-site tracking.
 
 ## 10. Children's privacy
 
-ReturnFlow is a B2B tool for merchants. We do not knowingly collect data from children under 16. If you believe we have, contact us and we will delete it.
+TrackBack is a B2B tool for merchants. We do not knowingly collect data from children under 16. If you believe we have, contact us and we will delete it.
 
 ---
 
@@ -186,4 +186,4 @@ We aim to respond within 48 hours and resolve requests within 30 days.
 
 ---
 
-*ReturnFlow is operated by [Your legal entity name], registered at [Your registered address]. This privacy policy is governed by [your jurisdiction] law.*
+*TrackBack is operated by [Your legal entity name], registered at [Your registered address]. This privacy policy is governed by [your jurisdiction] law.*

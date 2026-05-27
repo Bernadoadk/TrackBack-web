@@ -1,4 +1,4 @@
-# SEO setup — ReturnFlow landing page
+# SEO setup — TrackBack landing page
 
 This landing is **fully optimized for Google search ranking**. Below is what's
 already in place and what you need to do **after deployment** to maximize
@@ -62,12 +62,12 @@ Search & replace `return-flow-web.vercel.app` everywhere in `index.html`, `robot
 This is the preview shown on social shares (Facebook, LinkedIn, WhatsApp).
 Save it as `og-image.png` in this folder. Recommendations:
 - 1200×630 px (Facebook/LinkedIn standard)
-- ReturnFlow logo + tagline "Returns on autopilot for Shopify"
+- TrackBack logo + tagline "Returns on autopilot for Shopify"
 - Dark background matching the brand
 - Free tool: https://www.canva.com (template "Facebook Cover")
 
 ### 3. Update the Shopify App Store URL
-Search for `https://apps.shopify.com/returnflow` and replace with your
+Search for `https://apps.shopify.com/returnflow-2?locale=fr&st_source=autocomplete&surface_detail=autocomplete_apps` and replace with your
 **actual** App Store listing URL once your app is listed.
 
 ### 4. Update the canonical URL
