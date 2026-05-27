@@ -5,4 +5,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://return-flow-web.vercel.app/sitemap.xml
+Sitemap: https://trackback-web.vercel.app/sitemap.xml

@@ -2,7 +2,7 @@
 
 What's new in TrackBack. We follow [Semantic Versioning](https://semver.org/) and roughly the [Keep a Changelog](https://keepachangelog.com/) format.
 
-Subscribe to release notes by following us on [X / Twitter](https://twitter.com/returnflow) or via the changelog RSS feed.
+Subscribe to release notes by following us on [X / Twitter](https://twitter.com/trackback) or via the changelog RSS feed.
 
 ---
 
