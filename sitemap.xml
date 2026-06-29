@@ -9,13 +9,13 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://trackback-web.vercel.app/og-image.png</image:loc>
-      <image:title>TrackBack — Returns management app for Shopify</image:title>
+      <image:title>TrackBack - Returns management app for Shopify</image:title>
       <image:caption>Branded customer portal, automation, live chat and analytics for Shopify returns.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://trackback-web.vercel.app/trackback_logo.png</image:loc>
       <image:title>TrackBack logo</image:title>
-      <image:caption>TrackBack — the Shopify returns app on autopilot.</image:caption>
+      <image:caption>TrackBack - the Shopify returns app on autopilot.</image:caption>
     </image:image>
   </url>
 

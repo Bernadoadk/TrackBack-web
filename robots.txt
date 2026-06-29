@@ -1,4 +1,4 @@
-# TrackBack — robots.txt
+# TrackBack - robots.txt
 # Allow all crawlers and point them to the sitemap.
 
 User-agent: *

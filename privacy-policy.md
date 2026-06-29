@@ -14,7 +14,7 @@ We are committed to GDPR, CCPA and Shopify's data protection requirements. We ar
 TrackBack is a Shopify app that lets merchants manage product returns, exchanges and refunds. The "merchant" is the Shopify store owner who installed our app. The "customer" is the shopper using a merchant's return portal.
 
 - **Data controller (your shop's data):** the merchant — you decide what is collected from your customers
-- **Data processor:** TrackBack — we process data on the merchant's behalf, per Shopify's Data Processing Addendum
+- **Data processor:** TrackBack - we process data on the merchant's behalf, per Shopify's Data Processing Addendum
 - **Contact:** bernadoecom@gmail.com
 
 ---
