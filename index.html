@@ -15,8 +15,12 @@
   <meta name="theme-color" content="#6C63FF" />
   <meta name="application-name" content="TrackBack" />
 
-  <!-- Canonical (⚠️ replace with your real domain before publishing) -->
+  <!-- Canonical -->
   <link rel="canonical" href="https://trackback-web.vercel.app/" />
+
+  <!-- Hreflang (international SEO) -->
+  <link rel="alternate" hreflang="en" href="https://trackback-web.vercel.app/" />
+  <link rel="alternate" hreflang="x-default" href="https://trackback-web.vercel.app/" />
 
   <!-- Locale / language -->
   <meta http-equiv="content-language" content="en" />
@@ -402,16 +406,16 @@
 
     <div class="relative max-w-7xl mx-auto px-5 md:px-8 text-center">
       <h1 class="text-[40px] sm:text-[56px] md:text-[72px] lg:text-[80px] font-extrabold tracking-[-0.035em] leading-[1.02] mb-6 mt-4 animate-slide-up">
-        The Shopify returns app
-        on <span class="text-gradient">autopilot.</span>
+        TrackBack — the Shopify
+        returns app on <span class="text-gradient">autopilot.</span>
         <br />
         Built for growth.
       </h1>
 
       <p class="text-[16px] md:text-[19px] text-muted max-w-2xl mx-auto leading-relaxed mb-9 animate-slide-up" style="animation-delay: .1s;">
-        TrackBack is a Shopify return management app that replaces messy spreadsheets
-        with a branded customer portal, automated RMAs, exchanges, refunds, store
-        credit and built-in customer messaging. Set up in under 5 minutes.
+        TrackBack is the Shopify return management app that replaces messy spreadsheets
+        with a branded customer return portal, automated RMAs, exchanges, refunds, store
+        credit and built-in customer messaging. Set up TrackBack in under 5 minutes.
       </p>
 
       <div class="flex items-center justify-center gap-3 flex-wrap mb-12 animate-slide-up" style="animation-delay: .2s;">
@@ -1242,7 +1246,7 @@
           <ul class="space-y-2">
             <li><a href="privacy-policy.html" class="text-[12.5px] text-muted hover:text-ink transition-colors">Privacy policy</a></li>
             <li><a href="changelog.html" class="text-[12.5px] text-muted hover:text-ink transition-colors">Changelog</a></li>
-            <li><a href="/terms" class="text-[12.5px] text-muted hover:text-ink transition-colors">Terms of service</a></li>
+            <li><a href="mailto:legal@trackback-web.vercel.app" class="text-[12.5px] text-muted hover:text-ink transition-colors">Terms of service</a></li>
             <li><a href="mailto:dpo@trackback-web.vercel.app" class="text-[12.5px] text-muted hover:text-ink transition-colors">GDPR / DPO</a></li>
           </ul>
         </div>
@@ -1307,5 +1311,13 @@
     // Current year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+  <!-- Noscript fallback for SEO & accessibility -->
+  <noscript>
+    <div style="padding:2rem;text-align:center;background:#0A0B12;color:#F0F0F5;font-family:sans-serif;">
+      <h1>TrackBack — The Shopify Returns App on Autopilot</h1>
+      <p>TrackBack is a Shopify return management app with a branded customer portal, automated RMAs, exchanges, refunds, store credit and built-in live chat. <a href="https://apps.shopify.com/returnflow-2" style="color:#6C63FF;">Install TrackBack on Shopify</a>.</p>
+    </div>
+  </noscript>
 </body>
 </html>

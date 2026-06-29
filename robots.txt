@@ -3,6 +3,7 @@
 
 User-agent: *
 Allow: /
+Disallow: /terms
 
 # Sitemap location
 Sitemap: https://trackback-web.vercel.app/sitemap.xml

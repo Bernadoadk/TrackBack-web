@@ -4,35 +4,45 @@
 
   <url>
     <loc>https://trackback-web.vercel.app/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://trackback-web.vercel.app/og-image.png</image:loc>
-      <image:title>TrackBack — Returns management for Shopify</image:title>
+      <image:title>TrackBack — Returns management app for Shopify</image:title>
       <image:caption>Branded customer portal, automation, live chat and analytics for Shopify returns.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://trackback-web.vercel.app/trackback_logo.png</image:loc>
+      <image:title>TrackBack logo</image:title>
+      <image:caption>TrackBack — the Shopify returns app on autopilot.</image:caption>
     </image:image>
   </url>
 
   <url>
-    <loc>https://trackback-web.vercel.app/privacy-policy.html</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
     <loc>https://trackback-web.vercel.app/how-trackback-works</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://trackback-web.vercel.app/og-image.png</image:loc>
+      <image:title>How TrackBack Works — Interactive Shopify Returns Demo</image:title>
+      <image:caption>Interactive demo of TrackBack's Shopify-native return management workflow.</image:caption>
+    </image:image>
   </url>
 
   <url>
-    <loc>https://trackback-web.vercel.app/changelog.html</loc>
-    <lastmod>2026-05-27</lastmod>
+    <loc>https://trackback-web.vercel.app/changelog</loc>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://trackback-web.vercel.app/privacy-policy</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
 
 </urlset>
