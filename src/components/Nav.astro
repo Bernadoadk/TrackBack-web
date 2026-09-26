@@ -1,0 +1,105 @@
+---
+import Icon from './Icon.astro';
+import { installUrl, type Lang } from '../config/site';
+import { ROUTES, anchor, type RouteKey } from '../i18n/routes';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  route: RouteKey | null;
+}
+
+const { lang, route } = Astro.props;
+const t = UI[lang];
+const onHome = route === 'home';
+const other: Lang = lang === 'en' ? 'fr' : 'en';
+const otherHref = ROUTES[route ?? 'home'][other];
+
+const links = [
+  { href: anchor('features', lang, onHome), label: t.nav.features, current: false },
+  { href: ROUTES.demo[lang], label: t.nav.demo, current: route === 'demo' },
+  { href: anchor('pricing', lang, onHome), label: t.nav.pricing, current: false },
+  { href: anchor('faq', lang, onHome), label: t.nav.faq, current: false },
+];
+---
+
+<header
+  class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-bg/70 backdrop-blur-md transition-colors duration-300 data-[scrolled=true]:border-border data-[scrolled=true]:bg-bg/90"
+  data-nav
+>
+  <div class="container-x flex h-16 items-center justify-between gap-3">
+    <a href={ROUTES.home[lang]} class="flex shrink-0 items-center rounded-md" aria-label={t.homeLabel}>
+      <img src="/images/trackback-logo-dark.webp" alt="TrackBack" width="239" height="72" class="h-8 w-auto md:h-9" decoding="async" />
+    </a>
+
+    <nav aria-label={t.mainNav} class="hidden items-center gap-1 md:flex">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'rounded-lg px-3 py-2 text-[15px] transition-colors hover:text-ink',
+              link.current ? 'bg-white/[0.06] text-ink' : 'text-muted',
+            ]}
+            aria-current={link.current ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={otherHref}
+        hreflang={other}
+        lang={other}
+        title={t.langSwitch.title}
+        class="hidden h-9 items-center gap-1.5 rounded-lg border border-border px-2.5 text-[13px] font-semibold text-muted transition-colors hover:border-brand-300 hover:text-ink sm:inline-flex"
+      >
+        <Icon name="globe" class="h-4 w-4" />
+        {t.langSwitch.short}
+      </a>
+      <a href={installUrl(lang, 'nav')} class="btn btn-primary btn-sm" data-track="install" data-placement="nav">
+        {t.install}
+      </a>
+      <button
+        type="button"
+        class="grid h-9 w-9 place-content-center rounded-lg border border-border text-ink md:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label={t.menu}
+        data-menu-button
+        data-label-open={t.menu}
+        data-label-close={t.closeMenu}
+      >
+        <Icon name="menu" class="h-5 w-5" />
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="border-t border-border bg-bg md:hidden" hidden>
+    <nav aria-label={t.mainNav} class="container-x flex flex-col gap-1 py-3">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class:list={['rounded-lg px-3 py-3 text-base', link.current ? 'bg-white/[0.06] text-ink' : 'text-muted']}
+            aria-current={link.current ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href={otherHref}
+        hreflang={other}
+        lang={other}
+        class="mt-1 flex items-center gap-2 rounded-lg border-t border-divider px-3 pb-2 pt-4 text-base text-muted"
+      >
+        <Icon name="globe" class="h-4 w-4" />
+        {t.langSwitch.label}
+      </a>
+    </nav>
+  </div>
+</header>

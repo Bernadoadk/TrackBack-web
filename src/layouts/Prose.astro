@@ -1,0 +1,38 @@
+---
+import Base from './Base.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { SITE, type Lang } from '../config/site';
+import type { RouteKey } from '../i18n/routes';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  route: RouteKey;
+  title: string;
+  description: string;
+  updated: string | Date;
+}
+
+const { lang, route, title, description, updated } = Astro.props;
+const date = new Date(updated);
+const iso = date.toISOString().slice(0, 10);
+const label = date.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+---
+
+<Base lang={lang} route={route} title={`${title} | ${SITE.brand}`} description={description} breadcrumbName={title}>
+  <section class="relative overflow-hidden pb-6 pt-24 md:pt-28">
+    <div class="hero-backdrop opacity-70"></div>
+    <div class="container-x relative max-w-3xl">
+      <Breadcrumb lang={lang} current={title} />
+      <h1 class="mt-5 text-balance text-[36px] font-bold leading-[1.1] tracking-[-0.03em] md:text-[48px]">{title}</h1>
+      <p class="mt-3 text-[15px] text-faint">
+        {UI[lang].updated}{lang === 'fr' ? ' :' : ':'} <time datetime={iso}>{label}</time>
+      </p>
+    </div>
+  </section>
+  <div class="container-x max-w-3xl pb-24 pt-4">
+    <article class="prose-tb">
+      <slot />
+    </article>
+  </div>
+</Base>

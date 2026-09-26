@@ -1,0 +1,21 @@
+---
+interface Props {
+  kicker?: string;
+  title: string;
+  sub?: string;
+  align?: 'center' | 'left';
+  id?: string;
+  as?: 'h1' | 'h2';
+}
+
+const { kicker, title, sub, align = 'center', id, as: Tag = 'h2' } = Astro.props;
+---
+
+<div class:list={['reveal max-w-3xl', align === 'center' ? 'mx-auto text-center' : '']}>
+  {kicker && <p class="kicker">{kicker}</p>}
+  <Tag id={id} class="mt-3 text-balance text-[32px] font-bold leading-[1.1] tracking-[-0.025em] text-ink md:text-[44px]">
+    {title}
+  </Tag>
+  {sub && <p class="mt-4 text-pretty text-[17px] leading-relaxed text-muted md:text-lg">{sub}</p>}
+  <slot />
+</div>

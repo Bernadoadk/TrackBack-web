@@ -1,0 +1,51 @@
+---
+import Icon from '../Icon.astro';
+import SectionHeading from '../SectionHeading.astro';
+import type { HomeCopy } from '../../i18n/home';
+
+interface Props {
+  compare: HomeCopy['compare'];
+}
+
+const { compare } = Astro.props;
+---
+
+<section class="border-t border-divider py-20 md:py-28">
+  <div class="container-x">
+    <SectionHeading kicker={compare.kicker} title={compare.title} sub={compare.sub} />
+    <div class="mx-auto mt-14 grid max-w-5xl gap-4 md:grid-cols-2">
+      <div class="reveal rounded-2xl border border-border bg-surface/50 p-6 md:p-8">
+        <h3 class="flex items-center gap-2.5 text-[18px] font-semibold text-ink">
+          <span class="grid h-8 w-8 place-content-center rounded-lg bg-red-500/10 text-red-300"><Icon name="x" class="h-4 w-4" strokeWidth={2.5} /></span>
+          {compare.beforeTitle}
+        </h3>
+        <ul class="mt-6 space-y-4">
+          {
+            compare.before.map((item) => (
+              <li class="flex gap-3 text-[16px] leading-relaxed text-muted">
+                <Icon name="minus" class="mt-1 h-4 w-4 shrink-0 text-red-300/70" strokeWidth={2.5} />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="reveal rounded-2xl border border-brand-300/35 bg-linear-to-b from-brand/10 to-surface/60 p-6 md:p-8">
+        <h3 class="flex items-center gap-2.5 text-[18px] font-semibold text-ink">
+          <span class="grid h-8 w-8 place-content-center rounded-lg bg-brand text-white"><Icon name="check" class="h-4 w-4" strokeWidth={2.5} /></span>
+          {compare.afterTitle}
+        </h3>
+        <ul class="mt-6 space-y-4">
+          {
+            compare.after.map((item) => (
+              <li class="flex gap-3 text-[16px] leading-relaxed text-ink">
+                <Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal-300" strokeWidth={2.5} />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

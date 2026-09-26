@@ -1,0 +1,20 @@
+---
+import type { Lang } from '../config/site';
+import { ROUTES } from '../i18n/routes';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  current: string;
+}
+
+const { lang, current } = Astro.props;
+---
+
+<nav aria-label={lang === 'fr' ? "Fil d'Ariane" : 'Breadcrumb'} class="text-[14px] text-faint">
+  <ol class="flex flex-wrap items-center gap-1.5">
+    <li><a href={ROUTES.home[lang]} class="transition-colors hover:text-ink">{UI[lang].breadcrumbHome}</a></li>
+    <li aria-hidden="true">›</li>
+    <li aria-current="page" class="text-muted">{current}</li>
+  </ol>
+</nav>

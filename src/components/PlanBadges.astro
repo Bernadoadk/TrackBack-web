@@ -1,0 +1,19 @@
+---
+import type { Lang } from '../config/site';
+import type { PlanId } from '../data/plans';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  plans: PlanId[];
+  lang: Lang;
+  /** "from" labels ("All plans", "Starter+") instead of plan names. */
+  from?: boolean;
+}
+
+const { plans, lang, from = false } = Astro.props;
+const labels = from ? UI[lang].planFrom : UI[lang].plan;
+---
+
+<span class="inline-flex flex-wrap items-center gap-1.5">
+  {plans.map((plan) => <span class="plan-badge" data-plan={plan}>{labels[plan]}</span>)}
+</span>

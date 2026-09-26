@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import { installUrl, type Lang } from '../config/site';
+import type { IconName } from './icons';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  sub: string;
+  primary: string;
+  secondary?: { label: string; href: string; icon?: IconName };
+  placement: string;
+}
+
+const { lang, title, sub, primary, secondary, placement } = Astro.props;
+---
+
+<section class="relative overflow-hidden border-t border-divider py-20 md:py-28">
+  <div
+    class="pointer-events-none absolute inset-0"
+    style="background: radial-gradient(50% 70% at 50% 100%, rgb(14 93 241 / 0.22), transparent 70%), radial-gradient(35% 50% at 85% 100%, rgb(9 151 173 / 0.16), transparent 70%);"
+  >
+  </div>
+  <div class="container-x relative">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <h2 class="text-balance text-[34px] font-bold leading-[1.08] tracking-[-0.03em] md:text-[52px]">{title}</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-pretty text-[17px] leading-relaxed text-muted md:text-lg">{sub}</p>
+      <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a href={installUrl(lang, placement)} class="btn btn-primary w-full sm:w-auto" data-track="install" data-placement={placement}>
+          {primary}
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+        {
+          secondary && (
+            <a href={secondary.href} class="btn btn-secondary w-full sm:w-auto" data-track={secondary.icon && secondary.icon !== 'play' ? 'Secondary click' : 'Demo click'} data-placement={placement}>
+              <Icon name={secondary.icon ?? 'play'} class="h-4 w-4" />
+              {secondary.label}
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

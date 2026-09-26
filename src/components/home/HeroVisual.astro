@@ -1,0 +1,113 @@
+---
+import Icon from '../Icon.astro';
+import type { HomeCopy } from '../../i18n/home';
+
+interface Props {
+  v: HomeCopy['visual'];
+  label: string;
+}
+
+const { v, label } = Astro.props;
+---
+
+<div class="relative mx-auto w-full max-w-[560px] lg:ml-auto lg:mr-0" role="img" aria-label={label}>
+  <div aria-hidden="true" class="flex flex-col gap-4 sm:block">
+    <!-- Customer side: the return portal, inside the store's theme -->
+    <div class="relative rounded-2xl bg-paper text-paper-ink shadow-[0_40px_90px_-30px_rgb(0_0_0/0.95)] sm:mr-12 sm:mt-10">
+      <div class="flex items-center justify-between gap-3 border-b border-paper-line px-5 py-4">
+        <div class="min-w-0">
+          <p class="truncate text-[12px] text-paper-muted">{v.store}</p>
+          <p class="text-[17px] font-bold tracking-tight">{v.portalTitle}</p>
+        </div>
+        <span class="shrink-0 rounded-full border border-paper-line px-2.5 py-1 text-[11px] font-semibold text-paper-muted">{v.langs}</span>
+      </div>
+      <div class="p-5">
+        <div class="grid grid-cols-5 gap-1.5">
+          {v.steps.map((_, i) => <span class:list={['h-1.5 rounded-full', i <= 3 ? 'bg-brand' : 'bg-paper-line']} />)}
+        </div>
+        <p class="mt-2 text-[12px] font-medium text-paper-muted">4 / 5 · {v.steps[3]}</p>
+        <p class="mt-4 text-[15px] font-semibold">{v.question}</p>
+        <div class="mt-3 space-y-2.5">
+          <div class="rounded-xl border-2 border-brand bg-brand/[0.04] p-3.5">
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 grid h-4 w-4 shrink-0 place-content-center rounded-full border-2 border-brand">
+                <span class="h-1.5 w-1.5 rounded-full bg-brand"></span>
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="flex flex-wrap items-center gap-1.5 text-[14px] font-semibold">
+                  {v.credit.title}
+                  <span class="rounded-full bg-emerald-500/12 px-1.5 py-0.5 text-[11px] font-bold text-emerald-700">{v.credit.badge}</span>
+                  <span class="rounded-full bg-brand/10 px-1.5 py-0.5 text-[11px] font-bold text-brand-hover">{v.credit.tag}</span>
+                </p>
+                <p class="mt-0.5 text-[13px] text-paper-muted">{v.credit.sub}</p>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-xl border border-paper-line p-3.5">
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 h-4 w-4 shrink-0 rounded-full border-2 border-[#b4bac8]"></span>
+              <div class="min-w-0">
+                <p class="text-[14px] font-semibold">{v.exchange.title}</p>
+                <p class="mt-0.5 text-[13px] text-paper-muted">{v.exchange.sub}</p>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-xl border border-paper-line p-3.5">
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 h-4 w-4 shrink-0 rounded-full border-2 border-[#b4bac8]"></span>
+              <div class="min-w-0">
+                <p class="text-[14px] font-semibold">{v.refund.title}</p>
+                <p class="mt-0.5 text-[13px] text-paper-muted">{v.refund.sub}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 grid h-11 place-content-center rounded-xl bg-brand text-[14px] font-semibold text-white">{v.cta}</div>
+      </div>
+    </div>
+
+    <!-- Merchant side: the request lands in TrackBack, inside the Shopify admin -->
+    <div
+      class="rounded-2xl border border-border bg-elevated/95 p-4 shadow-[0_30px_70px_-25px_rgb(0_0_0/0.95)] backdrop-blur sm:absolute sm:-right-2 sm:top-0 sm:w-[270px] md:-right-6"
+    >
+      <div class="flex items-center justify-between gap-2">
+        <p class="flex items-center gap-2 text-[13px] font-semibold text-ink">
+          <img src="/images/trackback-icon-40.webp" alt="" width="20" height="20" class="h-5 w-5" decoding="async" />
+          {v.admin}
+        </p>
+        <span class="flex items-center gap-1.5 rounded-full bg-teal/20 px-2 py-0.5 text-[11px] font-semibold text-teal-300">
+          <span class="h-1.5 w-1.5 rounded-full bg-teal-300"></span>
+          {v.newReturn}
+        </span>
+      </div>
+      <p class="mt-3 font-mono text-[12px] text-faint">{v.rma}</p>
+      <p class="mt-0.5 text-[14px] font-semibold text-ink">{v.who}</p>
+      <div class="mt-2 flex items-center justify-between gap-2 text-[13px]">
+        <span class="text-muted">{v.resolution}</span>
+        <span class="font-semibold text-ink">{v.value}</span>
+      </div>
+      <div class="mt-3 grid grid-cols-2 gap-2">
+        <span class="grid h-8 place-content-center rounded-lg bg-brand text-[12px] font-semibold text-white">{v.approve}</span>
+        <span class="grid h-8 place-content-center rounded-lg border border-border text-[12px] font-semibold text-ink">{v.message}</span>
+      </div>
+      <div class="mt-3 flex items-center justify-between gap-2 border-t border-divider pt-3">
+        <span class="text-[12px] text-faint">{v.retained}</span>
+        <span class="flex items-center gap-1 text-[13px] font-semibold text-emerald-300">
+          <Icon name="chart" class="h-3.5 w-3.5" />
+          {v.retainedValue}
+        </span>
+      </div>
+    </div>
+
+    <!-- Email notification sent to the customer -->
+    <div
+      class="flex items-center gap-3 rounded-xl border border-border bg-elevated/95 px-3.5 py-2.5 shadow-2xl sm:absolute sm:-bottom-6 sm:-left-4 motion-safe:sm:animate-float-slow"
+    >
+      <span class="grid h-8 w-8 shrink-0 place-content-center rounded-lg bg-teal/20 text-teal-300"><Icon name="mail" class="h-4 w-4" /></span>
+      <div>
+        <p class="text-[12px] font-semibold text-ink">{v.toast.title}</p>
+        <p class="text-[12px] text-muted">{v.toast.text}</p>
+      </div>
+    </div>
+  </div>
+</div>

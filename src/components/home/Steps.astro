@@ -1,0 +1,34 @@
+---
+import SectionHeading from '../SectionHeading.astro';
+import type { HomeCopy } from '../../i18n/home';
+
+interface Props {
+  steps: HomeCopy['steps'];
+}
+
+const { steps } = Astro.props;
+---
+
+<section class="border-t border-divider bg-surface/30 py-20 md:py-28">
+  <div class="container-x">
+    <SectionHeading kicker={steps.kicker} title={steps.title} />
+    <ol class="relative mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+      <li
+        aria-hidden="true"
+        class="pointer-events-none absolute left-[16%] right-[16%] top-6 hidden h-px bg-linear-to-r from-transparent via-brand-300/50 to-transparent md:block"
+      >
+      </li>
+      {
+        steps.items.map((step, i) => (
+          <li class="reveal relative text-center">
+            <span class="relative mx-auto grid h-12 w-12 place-content-center rounded-full border border-brand-300/40 bg-bg text-[17px] font-bold text-brand-300 shadow-[0_0_0_6px_var(--color-bg)]">
+              {i + 1}
+            </span>
+            <h3 class="mt-5 text-[19px] font-semibold tracking-tight text-ink">{step.title}</h3>
+            <p class="mx-auto mt-2.5 max-w-sm text-[16px] leading-relaxed text-muted">{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from './Hero.astro';
+import Facts from './Facts.astro';
+import Differentiators from './Differentiators.astro';
+import Features from './Features.astro';
+import Steps from './Steps.astro';
+import Compare from './Compare.astro';
+import Pricing from './Pricing.astro';
+import Faq from '../Faq.astro';
+import FinalCta from '../FinalCta.astro';
+import type { Lang } from '../../config/site';
+import { HOME } from '../../i18n/home';
+import { ANCHORS, ROUTES } from '../../i18n/routes';
+import { appNode, faqNode } from '../../lib/schema';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const copy = HOME[lang];
+const site = Astro.site ?? new URL('https://trackback-web.vercel.app');
+const url = new URL(ROUTES.home[lang], site).href;
+---
+
+<Base
+  lang={lang}
+  route="home"
+  title={copy.meta.title}
+  description={copy.meta.description}
+  aboutApp
+  schema={[appNode(site, lang), faqNode(url, copy.faq.items)]}
+>
+  <Hero lang={lang} copy={copy} />
+  <Facts facts={copy.facts} />
+  <Differentiators lang={lang} diff={copy.diff} />
+  <Features lang={lang} features={copy.features} />
+  <Steps steps={copy.steps} />
+  <Compare compare={copy.compare} />
+  <Pricing lang={lang} pricing={copy.pricing} />
+  <Faq
+    id={ANCHORS.faq[lang]}
+    kicker={copy.faq.kicker}
+    title={copy.faq.title}
+    sub={copy.faq.sub}
+    contactLabel={copy.faq.contact}
+    items={copy.faq.items}
+  />
+  <FinalCta
+    lang={lang}
+    title={copy.final.title}
+    sub={copy.final.sub}
+    primary={copy.final.primary}
+    secondary={{ label: copy.final.secondary, href: ROUTES.demo[lang] }}
+    placement="home-final"
+  />
+</Base>

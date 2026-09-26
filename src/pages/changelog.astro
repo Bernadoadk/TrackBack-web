@@ -1,0 +1,8 @@
+---
+import Prose from '../layouts/Prose.astro';
+import { Content, frontmatter } from '../content/changelog/changelog.en.md';
+---
+
+<Prose lang="en" route="changelog" title={frontmatter.title} description={frontmatter.description} updated={frontmatter.updated}>
+  <Content />
+</Prose>

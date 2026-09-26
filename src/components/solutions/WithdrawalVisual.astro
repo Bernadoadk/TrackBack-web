@@ -1,0 +1,84 @@
+---
+import Icon from '../Icon.astro';
+import type { Lang } from '../../config/site';
+import { PORTAL } from '../demo/demo-data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const p = PORTAL[lang];
+const items =
+  lang === 'fr'
+    ? [
+        { title: 'Chemise en lin', meta: 'Bleu / S', price: '79,00 €', color: '#6f8fb8' },
+        { title: 'Écharpe en laine', meta: 'Gris', price: '45,00 €', color: '#8f96a3' },
+      ]
+    : [
+        { title: 'Linen shirt', meta: 'Blue / S', price: '€79.00', color: '#6f8fb8' },
+        { title: 'Wool scarf', meta: 'Grey', price: '€45.00', color: '#8f96a3' },
+      ];
+const email =
+  lang === 'fr'
+    ? { title: 'Rétractation reçue', text: 'Reçue le 26 septembre 2026 à 10:05. Une confirmation a été envoyée à lea@example.com.' }
+    : { title: 'Withdrawal received', text: 'Received on September 26, 2026 at 10:05 AM. A confirmation has been sent to lea@example.com.' };
+const label =
+  lang === 'fr'
+    ? "Aperçu : l'étape « Confirmer la rétractation » du portail TrackBack et l'e-mail d'accusé de réception."
+    : 'Preview: the “Confirm withdrawal” step of the TrackBack portal and the acknowledgment email.';
+---
+
+<div class="relative mx-auto w-full max-w-[520px]" role="img" aria-label={label}>
+  <div aria-hidden="true" class="flex flex-col gap-4 sm:block">
+    <div class="rounded-2xl bg-paper text-paper-ink shadow-[0_40px_90px_-30px_rgb(0_0_0/0.95)] sm:mr-8">
+      <div class="flex items-center justify-between border-b border-paper-line px-5 py-4">
+        <div>
+          <p class="text-[12px] text-paper-muted">Atelier Lune</p>
+          <p class="text-[17px] font-bold tracking-tight">{p.returnCenter}</p>
+        </div>
+        <span class="rounded-full bg-brand/10 px-2.5 py-1 text-[11px] font-bold text-brand-hover">2 / 2</span>
+      </div>
+      <div class="p-5">
+        <p class="text-[12px] text-paper-muted">{p.returnCenter} › <span class="font-semibold text-brand">{p.withdrawLink}</span></p>
+        <p class="mt-3 text-[18px] font-bold tracking-tight">{p.withdrawItems}</p>
+        <p class="text-[13px] text-paper-muted">#2041</p>
+        <div class="mt-4 space-y-2">
+          {
+            items.map((item) => (
+              <div class="flex items-center gap-3 rounded-xl border-2 border-brand bg-brand/[0.04] p-2.5">
+                <span class="grid h-4 w-4 place-content-center rounded bg-brand text-white">
+                  <Icon name="check" class="h-3 w-3" strokeWidth={3} />
+                </span>
+                <span class="grid h-10 w-10 place-content-center rounded-lg text-white" style={`background:${item.color}`}>
+                  <Icon name="shirt" class="h-5 w-5" />
+                </span>
+                <span class="min-w-0 flex-1">
+                  <span class="block text-[14px] font-semibold">{item.title}</span>
+                  <span class="block text-[12px] text-paper-muted">{item.meta}</span>
+                </span>
+                <span class="text-[13px] font-semibold">{item.price}</span>
+              </div>
+            ))
+          }
+        </div>
+        <div class="mt-5 flex items-center justify-between">
+          <span class="text-[14px] font-semibold text-paper-muted">{p.back}</span>
+          <span class="inline-flex h-10 items-center gap-2 rounded-lg bg-brand px-4 text-[14px] font-semibold text-white">
+            <Icon name="file-check" class="h-4 w-4" />
+            {p.withdrawConfirm}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex items-start gap-3 rounded-xl border border-border bg-elevated/95 p-4 shadow-2xl sm:absolute sm:-bottom-8 sm:right-0 sm:w-[300px]"
+    >
+      <span class="grid h-9 w-9 shrink-0 place-content-center rounded-lg bg-teal/20 text-teal-300"><Icon name="mail" class="h-4 w-4" /></span>
+      <div>
+        <p class="text-[13px] font-semibold text-ink">{email.title}</p>
+        <p class="mt-0.5 text-[12px] leading-relaxed text-muted">{email.text}</p>
+      </div>
+    </div>
+  </div>
+</div>

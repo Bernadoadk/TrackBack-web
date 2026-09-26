@@ -1,0 +1,106 @@
+---
+import { SITE, installUrl, mailto, type Lang } from '../config/site';
+import { ROUTES, anchor, type RouteKey } from '../i18n/routes';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  route: RouteKey | null;
+}
+
+const { lang, route } = Astro.props;
+const t = UI[lang].footer;
+const onHome = route === 'home';
+const year = new Date().getFullYear();
+
+const columns = [
+  {
+    title: t.product,
+    links: [
+      { href: anchor('features', lang, onHome), label: t.features },
+      { href: ROUTES.demo[lang], label: t.demo },
+      { href: anchor('pricing', lang, onHome), label: t.pricing },
+      { href: ROUTES.changelog[lang], label: t.changelog },
+      { href: installUrl(lang, 'footer'), label: t.appStore, track: true },
+    ],
+  },
+  {
+    title: t.solutions,
+    links: [
+      { href: ROUTES.withdrawal[lang], label: t.withdrawal },
+      { href: ROUTES.cod[lang], label: t.cod },
+    ],
+  },
+  {
+    title: t.company,
+    links: [{ href: mailto(), label: t.contact }],
+  },
+  {
+    title: t.legal,
+    links: [
+      { href: ROUTES.privacy[lang], label: t.privacy },
+      { href: ROUTES.terms[lang], label: t.terms },
+      { href: mailto(lang === 'fr' ? 'Demande RGPD' : 'Data protection request'), label: t.dataRequests },
+    ],
+  },
+];
+---
+
+<footer class="border-t border-divider bg-surface/40">
+  <div class="container-x py-14">
+    <div class="grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <a href={ROUTES.home[lang]} class="inline-flex rounded-md" aria-label={UI[lang].homeLabel}>
+          <img src="/images/trackback-logo-dark.webp" alt="TrackBack" width="239" height="72" class="h-9 w-auto" loading="lazy" decoding="async" />
+        </a>
+        <p class="mt-4 max-w-sm text-[15px] leading-relaxed text-muted">{t.blurb}</p>
+      </div>
+      <div class="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
+        {
+          columns.map((col) => (
+            <div>
+              <p class="text-[13px] font-semibold uppercase tracking-wider text-faint">{col.title}</p>
+              <ul class="mt-4 space-y-3">
+                {col.links.map((link) => (
+                  <li>
+                    <a
+                      href={link.href}
+                      class="text-[15px] text-muted transition-colors hover:text-ink"
+                      {...('track' in link && link.track ? { 'data-track': 'install', 'data-placement': 'footer' } : {})}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-4 border-t border-divider pt-6 text-[14px] text-faint sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {SITE.company} · {SITE.brand}. {t.rights}</p>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <span>{t.madeFor}</span>
+        <nav aria-label={t.language} class="flex items-center gap-1">
+          <a
+            href={ROUTES[route ?? 'home'].en}
+            hreflang="en"
+            lang="en"
+            class:list={['rounded px-1.5 py-0.5 transition-colors hover:text-ink', lang === 'en' && 'text-ink']}
+            aria-current={lang === 'en' ? 'true' : undefined}>English</a
+          >
+          <span aria-hidden="true">·</span>
+          <a
+            href={ROUTES[route ?? 'home'].fr}
+            hreflang="fr"
+            lang="fr"
+            class:list={['rounded px-1.5 py-0.5 transition-colors hover:text-ink', lang === 'fr' && 'text-ink']}
+            aria-current={lang === 'fr' ? 'true' : undefined}>Français</a
+          >
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>

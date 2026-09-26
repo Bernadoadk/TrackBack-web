@@ -1,0 +1,184 @@
+---
+import Icon from '../Icon.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { installUrl, mailto, type Lang } from '../../config/site';
+import { COMPARISON, PLANS, formatPrice, type Cell } from '../../data/plans';
+import { ANCHORS } from '../../i18n/routes';
+import { UI } from '../../i18n/ui';
+import type { HomeCopy } from '../../i18n/home';
+
+interface Props {
+  lang: Lang;
+  pricing: HomeCopy['pricing'];
+}
+
+const { lang, pricing } = Astro.props;
+const id = ANCHORS.pricing[lang];
+const names = UI[lang].plan;
+
+const cell = (value: Cell) => (typeof value === 'object' ? value[lang] : value);
+---
+
+<section id={id} class="group/pricing border-t border-divider py-20 md:py-28" data-billing="monthly" data-pricing>
+  <div class="container-x">
+    <SectionHeading kicker={pricing.kicker} title={pricing.title} sub={pricing.sub} />
+
+    <div class="mt-10 flex justify-center">
+      <div role="group" aria-label={`${pricing.monthly} / ${pricing.annual}`} class="inline-flex rounded-xl border border-border bg-surface p-1">
+        <button
+          type="button"
+          data-billing-option="monthly"
+          aria-pressed="true"
+          class="rounded-lg px-4 py-2 text-[14px] font-semibold text-muted transition-colors aria-pressed:bg-elevated aria-pressed:text-ink"
+        >
+          {pricing.monthly}
+        </button>
+        <button
+          type="button"
+          data-billing-option="annual"
+          aria-pressed="false"
+          class="flex items-center gap-2 rounded-lg px-4 py-2 text-[14px] font-semibold text-muted transition-colors aria-pressed:bg-elevated aria-pressed:text-ink"
+        >
+          {pricing.annual}
+          <span class="rounded-full bg-teal/20 px-1.5 py-0.5 text-[11px] font-bold text-teal-300">{pricing.save}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mx-auto mt-10 grid max-w-6xl items-start gap-5 lg:grid-cols-3">
+      {
+        PLANS.map((plan) => {
+          const saving = plan.annual ? plan.monthly * 12 - plan.annual : 0;
+          return (
+            <article
+              class:list={[
+                'reveal relative flex flex-col rounded-2xl border p-7',
+                plan.recommended
+                  ? 'border-brand-300/60 bg-linear-to-b from-brand/12 to-surface shadow-[0_30px_70px_-35px_rgb(14_93_241/0.8)]'
+                  : 'border-border bg-surface',
+              ]}
+            >
+              {plan.recommended && (
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand px-3 py-1 text-[12px] font-semibold text-white">
+                  {pricing.recommended}
+                </span>
+              )}
+              <h3 class="text-[20px] font-semibold text-ink">{names[plan.id]}</h3>
+              <p class="mt-1 text-[15px] text-muted">{plan.summary[lang]}</p>
+
+              <div class="mt-6 flex items-baseline gap-1.5">
+                {plan.monthly === 0 ? (
+                  <>
+                    <span class="text-[44px] font-bold leading-none tracking-tight text-ink">{formatPrice(0, lang)}</span>
+                    <span class="text-[15px] text-muted">{pricing.forever}</span>
+                  </>
+                ) : (
+                  <>
+                    <span class="text-[44px] font-bold leading-none tracking-tight text-ink group-data-[billing=annual]/pricing:hidden">
+                      {formatPrice(plan.monthly, lang)}
+                    </span>
+                    <span class="text-[15px] text-muted group-data-[billing=annual]/pricing:hidden">{pricing.perMonth}</span>
+                    <span class="hidden text-[44px] font-bold leading-none tracking-tight text-ink group-data-[billing=annual]/pricing:inline">
+                      {formatPrice(plan.annual ?? 0, lang)}
+                    </span>
+                    <span class="hidden text-[15px] text-muted group-data-[billing=annual]/pricing:inline">{pricing.perYear}</span>
+                  </>
+                )}
+              </div>
+              <p class="mt-2 h-5 text-[14px] font-medium text-teal-300">
+                {saving > 0 && <span class="hidden group-data-[billing=annual]/pricing:inline">{pricing.annualNote(formatPrice(saving, lang))}</span>}
+              </p>
+              <p class="mt-3 flex items-center gap-2 text-[15px] font-semibold text-ink">
+                <Icon name="inbox" class="h-4 w-4 text-brand-300" />
+                {plan.limit[lang]}
+              </p>
+
+              <a
+                href={installUrl(lang, `pricing-${plan.id}`)}
+                class:list={['btn mt-6', plan.recommended ? 'btn-primary' : 'btn-secondary']}
+                data-track="install"
+                data-placement={`pricing-${plan.id}`}
+              >
+                {pricing.cta[plan.id]}
+              </a>
+
+              <ul class="mt-7 space-y-3">
+                {plan.features[lang].map((feature, i) => (
+                  <li class:list={['flex gap-2.5 text-[15px] leading-snug', i === 0 && plan.id !== 'free' ? 'font-semibold text-ink' : 'text-muted']}>
+                    <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-teal-300" strokeWidth={2.5} />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          );
+        })
+      }
+    </div>
+
+    <details class="group reveal mx-auto mt-10 max-w-6xl rounded-2xl border border-border bg-surface/50">
+      <summary class="flex items-center justify-between gap-4 p-5 text-[16px] font-semibold text-ink md:p-6">
+        {pricing.compareToggle}
+        <Icon name="chevron-down" class="h-5 w-5 text-faint transition-transform duration-300 group-open:rotate-180" />
+      </summary>
+      <div class="overflow-x-auto px-3 pb-5 md:px-6">
+        <table class="w-full min-w-[620px] text-left text-[15px]">
+          <caption class="sr-only">{pricing.compareCaption}</caption>
+          <thead>
+            <tr class="border-b border-border text-ink">
+              <th scope="col" class="py-3 pr-4 font-semibold">{pricing.feature}</th>
+              {PLANS.map((plan) => <th scope="col" class="w-24 px-2 py-3 text-center font-semibold">{names[plan.id]}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              COMPARISON.map((row) => (
+                <tr class="border-b border-divider last:border-0">
+                  <th scope="row" class="py-3 pr-4 font-normal text-muted">
+                    {row.label[lang]}
+                  </th>
+                  {row.values.map((value) => (
+                    <td class="px-2 py-3 text-center">
+                      {value === true ? (
+                        <>
+                          <Icon name="check" class="mx-auto h-5 w-5 text-teal-300" strokeWidth={2.5} />
+                          <span class="sr-only">{pricing.included}</span>
+                        </>
+                      ) : value === false ? (
+                        <>
+                          <span aria-hidden="true" class="text-faint">—</span>
+                          <span class="sr-only">{pricing.notIncluded}</span>
+                        </>
+                      ) : (
+                        <span class="font-semibold text-ink">{cell(value)}</span>
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <p class="mt-8 text-center text-[15px] text-muted">
+      {pricing.custom}
+      <a href={mailto(lang === 'fr' ? 'Plan sur mesure' : 'Custom plan')} class="ml-1 font-semibold text-brand-300 underline underline-offset-4 hover:text-teal-300">
+        {pricing.customCta}
+      </a>
+    </p>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-pricing]').forEach((section) => {
+    const buttons = section.querySelectorAll<HTMLButtonElement>('[data-billing-option]');
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        section.dataset.billing = button.dataset.billingOption;
+        buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+      });
+    });
+  });
+</script>

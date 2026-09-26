@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../Breadcrumb.astro';
+import DemoApp from './DemoApp.astro';
+import Faq from '../Faq.astro';
+import FinalCta from '../FinalCta.astro';
+import Icon from '../Icon.astro';
+import SectionHeading from '../SectionHeading.astro';
+import type { Lang } from '../../config/site';
+import { DEMO_PAGE } from '../../i18n/demo-page';
+import { ROUTES, anchor } from '../../i18n/routes';
+import { UI } from '../../i18n/ui';
+import { appNode, faqNode } from '../../lib/schema';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const copy = DEMO_PAGE[lang];
+const site = Astro.site ?? new URL('https://trackback-web.vercel.app');
+const url = new URL(ROUTES.demo[lang], site).href;
+---
+
+<Base
+  lang={lang}
+  route="demo"
+  title={copy.meta.title}
+  description={copy.meta.description}
+  breadcrumbName={copy.breadcrumb}
+  aboutApp
+  schema={[appNode(site, lang), faqNode(url, copy.faq.items)]}
+>
+  <section class="relative overflow-hidden pb-16 pt-24 md:pb-24 md:pt-28">
+    <div class="hero-backdrop"></div>
+    <div class="container-x relative">
+      <Breadcrumb lang={lang} current={copy.breadcrumb} />
+      <div class="mt-5 max-w-3xl">
+        <p class="kicker">{copy.kicker}</p>
+        <h1 class="mt-3 text-balance text-[38px] font-bold leading-[1.05] tracking-[-0.03em] sm:text-[48px] md:text-[56px]">{copy.h1}</h1>
+        <p class="mt-4 max-w-2xl text-pretty text-[17px] leading-relaxed text-muted md:text-[19px]">{copy.sub}</p>
+      </div>
+      <div id="demo" class="mt-10 scroll-mt-24">
+        <DemoApp lang={lang} />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-divider bg-surface/30 py-20 md:py-28">
+    <div class="container-x">
+      <SectionHeading kicker={copy.after.kicker} title={copy.after.title} />
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          copy.after.items.map((item) => (
+            <article class="reveal card p-6">
+              <span class="grid h-11 w-11 place-content-center rounded-xl border border-border bg-elevated text-teal-300">
+                <Icon name={item.icon} class="h-5 w-5" />
+              </span>
+              <h3 class="mt-5 text-[18px] font-semibold tracking-tight text-ink">{item.title}</h3>
+              <p class="mt-2 text-[16px] leading-relaxed text-muted">{item.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Faq id="demo-faq" kicker={copy.faq.kicker} title={copy.faq.title} items={copy.faq.items} />
+
+  <FinalCta
+    lang={lang}
+    title={copy.final.title}
+    sub={copy.final.sub}
+    primary={copy.final.primary}
+    secondary={{ label: UI[lang].nav.pricing, href: anchor('pricing', lang, false), icon: 'tag' }}
+    placement="demo-final"
+  />
+</Base>

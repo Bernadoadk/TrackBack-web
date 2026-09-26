@@ -1,0 +1,8 @@
+---
+import Prose from '../layouts/Prose.astro';
+import { Content, frontmatter } from '../content/legal/terms.en.md';
+---
+
+<Prose lang="en" route="terms" title={frontmatter.title} description={frontmatter.description} updated={frontmatter.updated}>
+  <Content />
+</Prose>

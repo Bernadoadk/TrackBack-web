@@ -1,0 +1,59 @@
+---
+import Icon from '../Icon.astro';
+import PlanBadges from '../PlanBadges.astro';
+import SectionHeading from '../SectionHeading.astro';
+import type { Lang } from '../../config/site';
+import { ANCHORS } from '../../i18n/routes';
+import { UI } from '../../i18n/ui';
+import type { HomeCopy } from '../../i18n/home';
+
+interface Props {
+  lang: Lang;
+  features: HomeCopy['features'];
+}
+
+const { lang, features } = Astro.props;
+const id = ANCHORS.features[lang];
+---
+
+<section id={id} class="border-t border-divider py-20 md:py-28">
+  <div class="container-x">
+    <SectionHeading kicker={features.kicker} title={features.title} sub={features.sub} />
+
+    <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        features.items.map((item) => (
+          <article class="reveal card p-6">
+            <div class="flex items-center justify-between gap-3">
+              <span class="grid h-11 w-11 place-content-center rounded-xl border border-border bg-elevated text-brand-300">
+                <Icon name={item.icon} class="h-5 w-5" />
+              </span>
+              <PlanBadges plans={item.plans} lang={lang} />
+            </div>
+            <h3 class="mt-5 text-[19px] font-semibold leading-snug tracking-tight text-ink">{item.title}</h3>
+            <p class="mt-2.5 text-[16px] leading-relaxed text-muted">{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-10 rounded-2xl border border-border bg-surface/50 p-6 md:p-8">
+      <h3 class="text-[15px] font-semibold uppercase tracking-wider text-faint">{features.alsoTitle}</h3>
+      <ul class="mt-5 grid gap-x-8 gap-y-3.5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          features.also.map((item) => (
+            <li class="flex items-center justify-between gap-3 text-[15px] text-ink">
+              <span class="flex items-center gap-2.5">
+                <Icon name="check" class="h-4 w-4 shrink-0 text-teal-300" strokeWidth={2.5} />
+                {item.label}
+              </span>
+              <span class="plan-badge shrink-0" data-plan={item.plan}>
+                {UI[lang].plan[item.plan]}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
